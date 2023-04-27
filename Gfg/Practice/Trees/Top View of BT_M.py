@@ -32,18 +32,15 @@ class BinaryTree:
                 if queue:
                     queue.append(None)
 
-    def LeftView(self,root):
+    def topView(self,root):
         res=[]
-        maxdepth=[0]
-        def helper(root,depth):
-            if not root:
-                return
-            if depth>maxdepth[0]:
-                res.append(root.val)
-                maxdepth[0]=depth
-            helper(root.left,depth+1)
-            helper(root.right,depth+1)
-        helper(root,1)
+        r,l=root,root
+        while l:
+            res.append(l.val)
+            l=l.left
+        while r:
+            res.append(r.val)
+            r=r.right
         return res
 
 tree=BinaryTree(1)
@@ -54,7 +51,9 @@ n4=Node(5)
 n5=Node(6)
 tree.root.left=n1
 tree.root.right=n2
+n1.left=n3
+n1.right=n4
 n2.right=n5
 print(tree.levelOrder(tree.root))
-print(tree.LeftView(tree.root))
+print(tree.topView(tree.root))
 

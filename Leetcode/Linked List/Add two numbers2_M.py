@@ -70,6 +70,33 @@ class LinkedList:
             updated=updated.next
             i+=1
         return dummy.next
+    
+    def addTwoNumbers123(self, l1, l2):
+        dummy=ListNode(0)
+        curr=dummy
+        carry=0
+        while l1 and l2:
+            sum=l1.val+l2.val+carry
+            if sum>9:
+              sum=sum%10
+              curr.next=ListNode(sum)
+              curr=curr.next
+              carry=1
+            else:
+                curr.next=ListNode(sum)
+                curr=curr.next
+                carry=0
+            l1=l1.next
+            l2=l2.next
+        while l1:
+            curr.next=ListNode(l1.val)
+            curr=curr.next
+            l1=l1.next
+        while l2:
+            curr.next=ListNode(l2.val)
+            curr=curr.next
+            l2=l2.next
+        return dummy.next 
         
 class Solution(object):
     def addTwoNumbers(self, l1, l2):
@@ -115,19 +142,22 @@ class Solution(object):
 
 if __name__=="__main__":
     l1=LinkedList()
-    l1.head=ListNode(5)
-    l1_n2=ListNode(6)
+    l1.head=ListNode(2)
+    l1_n2=ListNode(4)
+    l1_n3=ListNode(3)
     l1.head.next=l1_n2
+    l1_n2.next=l1_n3
     
 
     l2=LinkedList()
     l2.head=ListNode(5)
-    l2_n7=ListNode(4)
-    l2_n8=ListNode(9)
+    l2_n7=ListNode(6)
+    l2_n8=ListNode(4)
     l2.head.next=l2_n7
     l2_n7.next=l2_n8
     l1.printLL(l2.head)
     l1.printLL(l1.head)
+    l1.printLL(l1.addTwoNumbers123(l1.head,l2.head))
 
     l3=LinkedList()
     l3.head=ListNode(1)
@@ -135,4 +165,3 @@ if __name__=="__main__":
     l3_n3=ListNode(3)
     l3.head.next=l3_n2
     l3_n2.next=l3_n3
-    l3_n7=l3.addTwoNumbers(l1.head,l2.head)

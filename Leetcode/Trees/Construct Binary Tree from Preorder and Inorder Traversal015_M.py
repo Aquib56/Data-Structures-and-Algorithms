@@ -6,13 +6,7 @@ class Node:
 class BinaryTree:
     def __init__(self,val):
         self.root=Node(val)
-
-    def inorder(self,root):
-        if not root:
-            return
-        self.inorder(root.left)
-        print(root.val,end=" ")
-        self.inorder(root.right)
+        
     def levelOrder(self,root):
         if root==None:
             return None
@@ -31,20 +25,14 @@ class BinaryTree:
                 print("")
                 if queue:
                     queue.append(None)
-
-    def LeftView(self,root):
-        res=[]
-        maxdepth=[0]
-        def helper(root,depth):
-            if not root:
-                return
-            if depth>maxdepth[0]:
-                res.append(root.val)
-                maxdepth[0]=depth
-            helper(root.left,depth+1)
-            helper(root.right,depth+1)
-        helper(root,1)
-        return res
+    def buildTree(self, preorder, inorder):
+        if not preorder and not inorder:
+            return None
+        root=Node(preorder[0])
+        mid=inorder.index(preorder[0])
+        root.left=self.buildTree(preorder[1:mid+1],inorder[:mid])
+        root.right=self.buildTree(preorder[mid+1:],inorder[mid+1:])
+        return root
 
 tree=BinaryTree(1)
 n1=Node(2)
@@ -52,9 +40,12 @@ n2=Node(3)
 n3=Node(4)
 n4=Node(5)
 n5=Node(6)
+preorder = [3,9,20,15,7]
+inorder = [9,3,15,20,7]
 tree.root.left=n1
 tree.root.right=n2
+n1.left=n3
+n1.right=n4
 n2.right=n5
-print(tree.levelOrder(tree.root))
-print(tree.LeftView(tree.root))
-
+tree.levelOrder(tree.root)
+tree.levelOrder(tree.buildTree(preorder,inorder))
