@@ -7,3 +7,6 @@ class Solution(object):
                 return False
             return helper(root.left,min,root.val-1) and helper(root.right,root.val+1,max)
         return helper(root)
+
+
+

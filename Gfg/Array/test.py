@@ -1,2 +1,2 @@
-for i in range(2):
-    print(i)
+if 9+1:
+    print(1)

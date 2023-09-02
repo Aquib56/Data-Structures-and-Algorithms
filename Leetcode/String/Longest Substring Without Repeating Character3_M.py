@@ -32,6 +32,7 @@ class Solution(object):
         l=0
         res=0
         for r in range(len(s)):
+            print(set1)
             while s[r] in set1:
                 set1.remove(s[l])
                 l+=1
@@ -40,5 +41,4 @@ class Solution(object):
         return res
 if __name__=="__main__":
     e1=Solution()
-    print(e1.lengthOfLongestSubstring("aa"))
-    arr=[3,4]
+    print(e1.lengthOfLongestSubstring("abcabcbb"))

@@ -1,3 +1,4 @@
-def bruh(a,b):
-    return a,b
-print(bruh(4,5))
+a=[5,3,1]
+b=[]
+b.extend(a)
+print(b)
