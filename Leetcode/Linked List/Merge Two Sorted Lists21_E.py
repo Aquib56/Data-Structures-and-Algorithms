@@ -32,6 +32,7 @@ class Solution(object):
         elif list2:
             list3.next=list2        
         return bruh.next  
+    
 if __name__=="__main__":
     l1=LinkedList()
     l1.head=ListNode(1)
